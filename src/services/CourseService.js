@@ -1,5 +1,5 @@
 const COURSE_API_URL =
-    'http://localhost:3000/api/course';
+    'http://localhost:8080/api/course';
 
 let _singleton = Symbol();
 
