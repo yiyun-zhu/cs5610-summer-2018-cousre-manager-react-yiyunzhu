@@ -44,7 +44,7 @@ class CourseList extends React.Component {
         });
     }
     renderCourseRow() {
-        var rows = this.state.courses.map((course) => {
+        let rows = this.state.courses.map((course) => {
             return <CourseRow course={course} key={course.id} deleteFunction={this.deleteCourse}/>
         });
         return rows;
