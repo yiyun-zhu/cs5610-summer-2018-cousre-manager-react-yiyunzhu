@@ -1,4 +1,5 @@
 import React from 'react'
+import ModuleService from '../services/ModuleService'
 
 class ModuleList extends React.Component {
     constructor(props) {
@@ -10,9 +11,13 @@ class ModuleList extends React.Component {
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleTitle = this.setModuleTitle.bind(this)
         this.createModule = this.createModule.bind(this);
+        this.moduleService = ModuleService.instance;
     }
     createModule() {
         console.log(this.state);
+        this.moduleService.createModule(
+            this.state.courseId, this.state.module);
+
     }
     setModuleTitle(event) {
         this.setState({module: {title: event.target.value}})
