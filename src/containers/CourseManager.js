@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseList from './CourseList';
 import CourseEditor from './CourseEditor';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class CourseManager extends React.Component {
     render() {

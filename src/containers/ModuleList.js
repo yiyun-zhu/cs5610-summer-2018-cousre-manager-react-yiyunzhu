@@ -1,5 +1,6 @@
-import React from 'react'
-import ModuleService from '../services/ModuleService'
+import React from 'react';
+import ModuleService from '../services/ModuleService';
+import ModuleListItem from '../components/ModuleListItem';
 
 class ModuleList extends React.Component {
     constructor(props) {
@@ -12,7 +13,16 @@ class ModuleList extends React.Component {
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleTitle = this.setModuleTitle.bind(this);
         this.createModule = this.createModule.bind(this);
+        this.deleteModule = this.deleteModule.bind(this);
         this.moduleService = ModuleService.instance;
+    }
+    deleteModule(moduleId) {
+        console.log(moduleId);
+        this.moduleService.deleteModule(moduleId)
+            .then(() => {
+                this.findAllModulesForCourse
+                (this.state.courseId)
+            })
     }
     findAllModulesForCourse(courseId) {
         this.moduleService
@@ -20,6 +30,21 @@ class ModuleList extends React.Component {
             .then((modules) => {
                 this.setState({modules: modules})
             })
+    }
+    setCourseId(courseId) {
+        this.setState({courseId: courseId})
+    }
+    componentDidMount() {
+        this.setCourseId
+        (this.props.courseId);
+        // this.findAllModulesForCourse
+        //     (this.props.courseId)
+    }
+    componentWillReceiveProps(newProps) {
+        this.setCourseId
+        (newProps.courseId);
+        this.findAllModulesForCourse
+        (newProps.courseId)
     }
     createModule() {
         console.log(this.state);
@@ -34,25 +59,10 @@ class ModuleList extends React.Component {
     setModuleTitle(event) {
         this.setState({module: {title: event.target.value}})
     }
-    setCourseId(courseId) {
-        this.setState({courseId: courseId})
-    }
-    componentDidMount() {
-        this.setCourseId
-            (this.props.courseId);
-        // this.findAllModulesForCourse
-        //     (this.props.courseId)
-    }
-    componentWillReceiveProps(newProps) {
-        this.setCourseId
-            (newProps.courseId);
-        this.findAllModulesForCourse
-            (newProps.courseId)
-    }
     renderModules() {
         let modules = this.state.modules.map((module) => {
-            return <li className="list-group-item" key={module.id}>
-                    {module.title}</li>
+            return <ModuleListItem module={module} key={module.id}
+                                    delete={this.deleteModule}/>
         });
         return modules
     }
