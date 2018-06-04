@@ -23,10 +23,12 @@ class CourseList extends React.Component {
                 this.setState({courses: courses});
             });
     }
-    titleChange(event) {
-        this.setState({
-            course: {title: event.target.value}
-        });
+    deleteCourse(courseId) {
+        console.log('delete'+ courseId);
+        this.courseService.deleteCourse(courseId)
+            .then(() => {
+                this.findAllCourses();
+            });
     }
     createCourse() {
         console.log(this.state.course);
@@ -36,9 +38,14 @@ class CourseList extends React.Component {
                 this.findAllCourses();
             });
     }
+    titleChange(event) {
+        this.setState({
+            course: {title: event.target.value}
+        });
+    }
     renderCourseRow() {
-        let rows = this.state.courses.map(function(course) {
-            return <CourseRow course={course} key={course.id}/>
+        var rows = this.state.courses.map((course) => {
+            return <CourseRow course={course} key={course.id} deleteFunction={this.deleteCourse}/>
         });
         return rows;
     }

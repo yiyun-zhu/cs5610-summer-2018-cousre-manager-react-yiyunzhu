@@ -13,7 +13,6 @@ class CourseService {
             this[_singleton] = new CourseService(_singleton);
         return this[_singleton]
     }
-
     findAllCourses() {
         return fetch(COURSE_API_URL)
             .then(function(response){
@@ -30,6 +29,11 @@ class CourseService {
         }).then(function(response) {
             return response.json();
         })
+    }
+    deleteCourse(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'DELETE'
+        });
     }
 }
 export default CourseService;
