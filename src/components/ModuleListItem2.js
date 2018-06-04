@@ -8,9 +8,10 @@ class ModuleListItem extends React.Component {
     render() {
         return (
             <li className="list-group-item">
-                {this.props.module.title}
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                    {this.props.module.title}</Link>
                 <button className="float-right" onClick={() =>
-                    {this.props.delete(this.props.module.id)}}>
+                {this.props.delete(this.props.module.id)}}>
                     Delete</button>
             </li>
         );

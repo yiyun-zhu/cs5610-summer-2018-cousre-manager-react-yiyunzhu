@@ -1,6 +1,8 @@
 import React from 'react';
 import ModuleService from '../services/ModuleService';
-import ModuleListItem from '../components/ModuleListItem';
+import ModuleListItem from '../components/ModuleListItem2';
+import ModuleEditor from './ModuleEditor';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class ModuleList extends React.Component {
     constructor(props) {
@@ -62,24 +64,34 @@ class ModuleList extends React.Component {
     renderModules() {
         let modules = this.state.modules.map((module) => {
             return <ModuleListItem module={module} key={module.id}
-                                    delete={this.deleteModule}/>
+                                   courseId={this.state.courseId}
+                                   delete={this.deleteModule}/>
         });
         return modules
     }
     render() {
         return (
-            <div>
-                <h4>Module List {this.state.courseId}</h4>
-                <input className="form-control"
-                       placeholder="New Module"
-                        value={this.state.module.title}
-                        onChange={this.setModuleTitle}/>
-                <button className="btn btn-primary btn-block"
-                        onClick={this.createModule}>Create</button>
-                <br/>
-                <ul className="list-group">
-                    {this.renderModules()}</ul>
-            </div>
+            <Router>
+                <div className="row">
+                    <div className="col-4">
+                        <h4>Module List {this.state.courseId}</h4>
+                        <input className="form-control"
+                               placeholder="New Module"
+                                value={this.state.module.title}
+                                onChange={this.setModuleTitle}/>
+                        <button className="btn btn-primary btn-block"
+                                onClick={this.createModule}>Create</button>
+                        <br/>
+                        <ul className="list-group">
+                            {this.renderModules()}</ul>
+                    </div>
+                    <div className="col-8">
+                        <Route path="/course/:courseId/module/:moduleId"
+                               component={ModuleEditor}>
+                        </Route>
+                    </div>
+                </div>
+            </Router>
         )
     }
 }
