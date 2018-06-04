@@ -13,12 +13,13 @@ class ModuleService {
             this[_singleton] = new ModuleService(_singleton);
         return this[_singleton]
     }
-    // findAllCourses() {
-    //     return fetch(COURSE_API_URL)
-    //         .then(function(response){
-    //             return response.json();
-    //         });
-    // }
+    findAllModulesForCourse(courseId) {
+        console.log(courseId)
+        return fetch(MODULE_API_URL.replace('CID', courseId))
+            .then(function(response){
+                return response.json();
+            });
+    }
     createModule(courseId, module){
         return fetch(MODULE_API_URL.replace('CID', courseId), {
             body: JSON.stringify(module),
