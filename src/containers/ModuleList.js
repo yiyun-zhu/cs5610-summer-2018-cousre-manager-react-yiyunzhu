@@ -10,13 +10,18 @@ class ModuleList extends React.Component {
         this.state =
             {courseId:'',
             module: {title: ''},
-            modules: []
+            modules: [],
+            selectId:''
         };
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleTitle = this.setModuleTitle.bind(this);
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
         this.moduleService = ModuleService.instance;
+        this.selectModule = this.selectModule.bind(this);
+    }
+    selectModule(moduleId) {
+        this.setState({selectId: moduleId});
     }
     deleteModule(moduleId) {
         console.log(moduleId);
@@ -39,14 +44,12 @@ class ModuleList extends React.Component {
     componentDidMount() {
         this.setCourseId
         (this.props.courseId);
-        // this.findAllModulesForCourse
-        //     (this.props.courseId)
     }
     componentWillReceiveProps(newProps) {
         this.setCourseId
         (newProps.courseId);
         this.findAllModulesForCourse
-        (newProps.courseId)
+        (newProps.courseId);
     }
     createModule() {
         console.log(this.state);
@@ -63,9 +66,19 @@ class ModuleList extends React.Component {
     }
     renderModules() {
         let modules = this.state.modules.map((module) => {
-            return <ModuleListItem module={module} key={module.id}
-                                   courseId={this.state.courseId}
-                                   delete={this.deleteModule}/>
+            if (this.state.selectId === module.id) {
+                return <ModuleListItem module={module} key={module.id}
+                                       courseId={this.state.courseId}
+                                       delete={this.deleteModule}
+                                       click={this.selectModule}
+                                        class={"list-group-item active"}/>
+            } else {
+                return <ModuleListItem module={module} key={module.id}
+                                       courseId={this.state.courseId}
+                                       delete={this.deleteModule}
+                                       click={this.selectModule}
+                                       class={"list-group-item"}/>
+            }
         });
         return modules
     }
@@ -75,13 +88,14 @@ class ModuleList extends React.Component {
                 <div className="row">
                     <div className="col-4">
                         <h4>Module List {this.state.courseId}</h4>
+                        <br/>
                         <input className="form-control"
                                placeholder="New Module"
                                 value={this.state.module.title}
                                 onChange={this.setModuleTitle}/>
                         <button className="btn btn-primary btn-block"
-                                onClick={this.createModule}>Create</button>
-                        <br/>
+                                onClick={this.createModule}>
+                            <i className="fa fa-plus"></i></button>
                         <ul className="list-group">
                             {this.renderModules()}</ul>
                     </div>

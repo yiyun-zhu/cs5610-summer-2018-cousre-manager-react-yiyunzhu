@@ -7,13 +7,19 @@ class ModuleListItem extends React.Component {
     }
     render() {
         return (
-            <li className="list-group-item">
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-                    {this.props.module.title}</Link>
-                <button className="float-right" onClick={() =>
-                {this.props.delete(this.props.module.id)}}>
-                    Delete</button>
+            <li className={this.props.class}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}
+                      onClick={() => {
+                          this.props.click(this.props.module.id)}}>
+                    {this.props.module.title}
+                </Link>
+                <span className="float-right" onClick={() => {
+                    if(window.confirm('Delete this module?'))
+                    {this.props.delete(this.props.module.id)}}}>
+                    <i className="fa fa-times"></i>
+                </span>
             </li>
+
         );
     }
 }
