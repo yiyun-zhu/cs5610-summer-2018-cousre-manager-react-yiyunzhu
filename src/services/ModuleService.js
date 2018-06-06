@@ -1,9 +1,9 @@
 const MODULE_API_URL =
-    // 'http://localhost:8080/api/course/CID/module';
-       'https://glacial-beach-96186.herokuapp.com/api/course/CID/module';
+    'http://localhost:8080/api/course/CID/module';
+       // 'https://glacial-beach-96186.herokuapp.com/api/course/CID/module';
 const MODULE_API_URL2 =
-    // 'http://localhost:8080/api/module/MID';
-        'https://glacial-beach-96186.herokuapp.com/api/module/MID';
+    'http://localhost:8080/api/module/MID';
+        // 'https://glacial-beach-96186.herokuapp.com/api/module/MID';
 
 let _singleton = Symbol();
 

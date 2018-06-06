@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="be61afd4-f755-436a-8857-84cf48e154a6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CourseRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ModuleListItem2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModuleListItem2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/CourseList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/CourseList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/LessonTabs2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/LessonTabs2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/ModuleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ModuleList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/CourseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/CourseService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/LessonService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/LessonService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/ModuleService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ModuleService.js" afterDir="false" />
@@ -54,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LessonService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LessonService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/LessonService.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
@@ -72,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CourseService.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CourseService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/services/CourseService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+            <state relative-caret-position="48">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -112,9 +107,9 @@
         <option value="$PROJECT_DIR$/src/containers/ModuleList.js" />
         <option value="$PROJECT_DIR$/src/components/ModuleListItem2.js" />
         <option value="$PROJECT_DIR$/src/containers/LessonTabs2.js" />
+        <option value="$PROJECT_DIR$/src/services/LessonService.js" />
         <option value="$PROJECT_DIR$/src/services/ModuleService.js" />
         <option value="$PROJECT_DIR$/src/services/CourseService.js" />
-        <option value="$PROJECT_DIR$/src/services/LessonService.js" />
       </list>
     </option>
   </component>
@@ -219,12 +214,12 @@
       <workItem from="1528220524342" duration="27446000" />
       <workItem from="1528253356926" duration="1390000" />
       <workItem from="1528276586370" duration="541000" />
-      <workItem from="1528320332160" duration="3504000" />
+      <workItem from="1528320332160" duration="4567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105684000" />
+    <option name="totallyTimeSpent" value="106747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="733" extended-state="6" />
@@ -666,10 +661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/CourseService.js">
+    <entry file="file://$PROJECT_DIR$/src/services/LessonService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
@@ -680,10 +675,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/LessonService.js">
+    <entry file="file://$PROJECT_DIR$/src/services/CourseService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="48">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
