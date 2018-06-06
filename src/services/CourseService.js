@@ -1,5 +1,7 @@
 const COURSE_API_URL =
-    'http://localhost:8080/api/course';
+    // 'http://localhost:8080/api/course';
+    'https://glacial-beach-96186.herokuapp.com/api/course';
+
 
 let _singleton = Symbol();
 

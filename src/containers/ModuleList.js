@@ -49,7 +49,9 @@ class ModuleList extends React.Component {
             })
     }
     setModuleTitle(event) {
-        this.setState({module: {title: event.target.value}})
+        this.setState({
+            module: {title: event.target.value}
+        })
     }
     setCourseId(courseId) {
         this.setState({courseId: courseId})
@@ -59,14 +61,14 @@ class ModuleList extends React.Component {
     }
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId);
-        this.findAllModulesForCourse
-        (newProps.courseId);
+        this.findAllModulesForCourse(newProps.courseId);
     }
     renderModules() {
         let modules = this.state.modules.map((module) => {
             return <ModuleListItem module={module} key={module.id}
                                     courseId={this.state.courseId}
                                     delete={this.deleteModule} click={this.selectModule}
+                                   back={this.state.selectId}
                                     class={this.state.selectId === module.id ?
                                     'list-group-item list-group-item-info':
                                     'list-group-item list-group-item-light'}/>

@@ -53,8 +53,9 @@ export default class LessonTabs
             });
     }
     titleChange(event) {
-        this.setState({lesson: {title: event.target.value}});
-        console.log(this.state.selectedId);
+        this.setState({
+            lesson: {title: event.target.value}});
+        // console.log(this.state.selectedId);
     }
     setCourseId(courseId) {
         this.setState({courseId: courseId});
@@ -70,7 +71,6 @@ export default class LessonTabs
         this.setModuleId(newProps.moduleId);
         this.setCourseId(newProps.courseId);
         this.findAllLessonsForModule(newProps.moduleId);
-        this.setState({selectedId: ''})
     }
     renderLessonTabs() {
         let lessons = this.state.lessons.map((lesson) => {

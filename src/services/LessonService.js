@@ -1,7 +1,10 @@
 const LESSON_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson';
+    // 'http://localhost:8080/api/course/CID/module/MID/lesson';
+    'https://glacial-beach-96186.herokuapp.com/api/course/CID/module/MID/lesson';
+
 const LESSON_API_URL2 =
-    'http://localhost:8080/api/lesson/LID';
+    // 'http://localhost:8080/api/lesson/LID';
+    'https://glacial-beach-96186.herokuapp.com/api/lesson/LID';
 
 let _singleton = Symbol();
 
@@ -22,7 +25,7 @@ class LessonService {
         });
     }
     findAllLessonsForModule(moduleId) {
-        return fetch('http://localhost:8080/api/module/MID/lesson'
+        return fetch('https://glacial-beach-96186.herokuapp.com/api/module/MID/lesson'
                     .replace('MID', moduleId))
             .then(function(response) {
                 return response.json();

@@ -27,4 +27,3 @@ class CourseRow extends React.Component {
 }
 
 export default CourseRow;
-// onClick={this.props.delete}

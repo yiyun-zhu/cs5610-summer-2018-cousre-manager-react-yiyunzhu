@@ -5,11 +5,11 @@ import CourseService from '../services/CourseService'
 class CourseList extends React.Component {
     constructor() {
         super();
-        this.courseService = CourseService.instance;
         this.state = {
             course: {title :'New Class'},
             courses: []
         };
+        this.courseService = CourseService.instance;
         this.titleChange = this.titleChange.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
@@ -31,7 +31,7 @@ class CourseList extends React.Component {
             });
     }
     createCourse() {
-        console.log(this.state.course);
+        // console.log(this.state.course);
         this.courseService
             .createCourse(this.state.course)
             .then(() => {
