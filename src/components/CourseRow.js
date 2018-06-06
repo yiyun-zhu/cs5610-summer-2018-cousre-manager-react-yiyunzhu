@@ -9,15 +9,18 @@ class CourseRow extends React.Component {
         return (
             <tr>
                 <td><Link to=
-                          {`/course/${this.props.course.id}`}>
+                          {`/course/${this.props.course.id}/edit`}>
                         {this.props.course.title}</Link></td>
                 <td>owner</td>
                 <td>{this.props.course.modified}</td>
-                <td><button className="btn btn-danger"
-                            onClick={() =>
-                                {this.props.deleteFunction(this.props.course.id)}
-                            }>Delete
-                </button></td>
+                <td>
+                    <button className="btn btn-danger"
+                            onClick={() => {
+                                if(window.confirm('Delete this course?'))
+                                {this.props.deleteFunction(this.props.course.id)}}}>
+                        <i className="fa fa-times"></i>
+                    </button>
+                </td>
             </tr>
         );
     }

@@ -16,7 +16,7 @@ class ModuleService {
         return this[_singleton]
     }
     findAllModulesForCourse(courseId) {
-        console.log(courseId)
+        // console.log(courseId)
         return fetch(MODULE_API_URL.replace('CID', courseId))
             .then(function(response){
                 return response.json();
@@ -29,8 +29,6 @@ class ModuleService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        }).then(function(response) {
-            return response.json();
         })
     }
     deleteModule(moduleId) {

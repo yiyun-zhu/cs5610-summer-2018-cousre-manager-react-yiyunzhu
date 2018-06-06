@@ -9,10 +9,10 @@ class CourseManager extends React.Component {
             <Router>
                 <div className="container-fluid">
                     <h1>Course Manager</h1>
-                    <Route path="/courses"
+                    <Route path="/course/list"
                            component={CourseList}>
                     </Route>
-                    <Route path="/course/:courseId"
+                    <Route path="/course/:courseId/edit"
                             component={CourseEditor}>
                     </Route>
                 </div>

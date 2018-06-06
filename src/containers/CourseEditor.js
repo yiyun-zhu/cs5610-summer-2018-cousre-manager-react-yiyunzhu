@@ -23,9 +23,11 @@ class CourseEditor extends React.Component {
     render() {
         return (
             <div>
-                <h3>Course Editor {this.state.courseId}</h3>
-                <ModuleList courseId={this.state.courseId}/>
-
+                <div>
+                    <h3>Course Editor</h3>
+                    <h3>Course ID: {this.state.courseId}</h3>
+                    <ModuleList courseId={this.state.courseId}/>
+                </div>
             </div>
         );
     }

@@ -9,7 +9,7 @@ class ModuleList extends React.Component {
         super(props);
         this.state =
             {courseId:'',
-            module: {title: ''},
+            module: {title: 'New Model'},
             modules: [],
             selectId:''
         };
@@ -24,7 +24,7 @@ class ModuleList extends React.Component {
         this.setState({selectId: moduleId});
     }
     deleteModule(moduleId) {
-        console.log(moduleId);
+        // console.log(moduleId);
         this.moduleService.deleteModule(moduleId)
             .then(() => {
                 this.findAllModulesForCourse
@@ -38,21 +38,8 @@ class ModuleList extends React.Component {
                 this.setState({modules: modules})
             })
     }
-    setCourseId(courseId) {
-        this.setState({courseId: courseId})
-    }
-    componentDidMount() {
-        this.setCourseId
-        (this.props.courseId);
-    }
-    componentWillReceiveProps(newProps) {
-        this.setCourseId
-        (newProps.courseId);
-        this.findAllModulesForCourse
-        (newProps.courseId);
-    }
     createModule() {
-        console.log(this.state);
+        console.log(this.state.module);
         this.moduleService
             .createModule
                 (this.state.courseId, this.state.module)
@@ -64,43 +51,45 @@ class ModuleList extends React.Component {
     setModuleTitle(event) {
         this.setState({module: {title: event.target.value}})
     }
+    setCourseId(courseId) {
+        this.setState({courseId: courseId})
+    }
+    componentDidMount() {
+        this.setCourseId(this.props.courseId);
+    }
+    componentWillReceiveProps(newProps) {
+        this.setCourseId(newProps.courseId);
+        this.findAllModulesForCourse
+        (newProps.courseId);
+    }
     renderModules() {
         let modules = this.state.modules.map((module) => {
-            if (this.state.selectId === module.id) {
-                return <ModuleListItem module={module} key={module.id}
-                                       courseId={this.state.courseId}
-                                       delete={this.deleteModule}
-                                       click={this.selectModule}
-                                        class={"list-group-item active"}/>
-            } else {
-                return <ModuleListItem module={module} key={module.id}
-                                       courseId={this.state.courseId}
-                                       delete={this.deleteModule}
-                                       click={this.selectModule}
-                                       class={"list-group-item"}/>
-            }
+            return <ModuleListItem module={module} key={module.id}
+                                    courseId={this.state.courseId}
+                                    delete={this.deleteModule} click={this.selectModule}
+                                    class={this.state.selectId === module.id ?
+                                    'list-group-item list-group-item-info':
+                                    'list-group-item list-group-item-light'}/>
         });
-        return modules
+        return modules;
     }
     render() {
         return (
             <Router>
                 <div className="row">
                     <div className="col-4">
-                        <h4>Module List {this.state.courseId}</h4>
-                        <br/>
+                        <h4 className="text-warning">Module List</h4>
                         <input className="form-control"
                                placeholder="New Module"
-                                value={this.state.module.title}
                                 onChange={this.setModuleTitle}/>
-                        <button className="btn btn-primary btn-block"
+                        <button className="btn btn-info btn-block"
                                 onClick={this.createModule}>
                             <i className="fa fa-plus"></i></button>
-                        <ul className="list-group">
+                        <ul className="list-group list-group-flush">
                             {this.renderModules()}</ul>
                     </div>
                     <div className="col-8">
-                        <Route path="/course/:courseId/module/:moduleId"
+                        <Route path="/course/:courseId/module/:moduleId/edit"
                                component={ModuleEditor}>
                         </Route>
                     </div>

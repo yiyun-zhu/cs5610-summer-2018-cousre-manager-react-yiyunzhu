@@ -7,7 +7,7 @@ class CourseList extends React.Component {
         super();
         this.courseService = CourseService.instance;
         this.state = {
-            // course: {},
+            course: {title :'New Class'},
             courses: []
         };
         this.titleChange = this.titleChange.bind(this);
@@ -24,7 +24,7 @@ class CourseList extends React.Component {
             });
     }
     deleteCourse(courseId) {
-        console.log('delete'+ courseId);
+        // console.log('delete'+ courseId);
         this.courseService.deleteCourse(courseId)
             .then(() => {
                 this.findAllCourses();
@@ -54,7 +54,17 @@ class CourseList extends React.Component {
     render() {
         return (
             <div>
-                <h2>Course List</h2>
+                {/*<h2>Course List</h2>*/}
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <a className="navbar-brand">Course List</a>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" placeholder="CS101"
+                               onChange={this.titleChange}/>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="btn"
+                                onClick={this.createCourse}>
+                            <i className="fa fa-plus"></i></button>
+                    </form>
+                </nav>
                 <table className="table">
                     <thead>
                         <tr>
@@ -62,14 +72,15 @@ class CourseList extends React.Component {
                             <th>Owned by</th>
                             <th>Last modified</th>
                             <th>&nbsp;</th></tr>
-                        <tr>
-                            <th><input className="form-control" id="titleFld" placeholder="CS101"
-                                        onChange={this.titleChange}/></th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th><button className="btn btn-primary"
-                                        onClick={this.createCourse}>Add</button></th>
-                        </tr>
+                        {/*<tr>*/}
+                            {/*<th><input className="form-control" id="titleFld" placeholder="CS101"*/}
+                                        {/*onChange={this.titleChange}/></th>*/}
+                            {/*<th>&nbsp;</th>*/}
+                            {/*<th>&nbsp;</th>*/}
+                            {/*<th><button className="btn btn-primary"*/}
+                                        {/*onClick={this.createCourse}>*/}
+                                {/*<i className="fa fa-plus"></i></button></th>*/}
+                        {/*</tr>*/}
                     </thead>
                     <tbody>
                         {this.renderCourseRow()}

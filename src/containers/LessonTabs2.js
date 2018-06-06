@@ -1,6 +1,8 @@
 import React from 'react';
 import LessonService from '../services/LessonService';
-import LessonTabItem from '../components/LessonTabItem'
+import LessonTabItem from '../components/LessonTabItem';
+import LessonEditor from './LessonEditor';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 export default class LessonTabs
     extends React.Component {
@@ -9,7 +11,7 @@ export default class LessonTabs
         this.state = {
             courseId:'',
             moduleId:'',
-            lesson: {title: ''},
+            lesson: {title: 'New Lesson'},
             lessons: [],
             selectedId:''
         };
@@ -22,7 +24,8 @@ export default class LessonTabs
         this.deleteLesson = this.deleteLesson.bind(this);
     }
     deleteLesson() {
-        console.log(this.state.selectedId);
+        // console.log("delete");
+        // console.log(this.state.selectedId);
         this.lessonService.deleteLesson(this.state.selectedId)
             .then(() => {
                 this.findAllLessonsForModule
@@ -39,7 +42,7 @@ export default class LessonTabs
             });
     }
     createLesson() {
-        console.log(this.state.lesson);
+        // console.log(this.state.lesson);
         this.lessonService.createLesson
             (this.state.courseId,
                 this.state.moduleId,
@@ -51,6 +54,7 @@ export default class LessonTabs
     }
     titleChange(event) {
         this.setState({lesson: {title: event.target.value}});
+        console.log(this.state.selectedId);
     }
     setCourseId(courseId) {
         this.setState({courseId: courseId});
@@ -59,59 +63,62 @@ export default class LessonTabs
         this.setState({moduleId: moduleId});
     }
     componentDidMount() {
-        this.setModuleId
-        (this.props.moduleId);
-        this.setCourseId
-        (this.props.courseId);
+        this.setModuleId(this.props.moduleId);
+        this.setCourseId(this.props.courseId);
     }
     componentWillReceiveProps(newProps) {
-        this.setModuleId
-        (newProps.moduleId);
-        this.setCourseId
-        (newProps.courseId);
+        this.setModuleId(newProps.moduleId);
+        this.setCourseId(newProps.courseId);
         this.findAllLessonsForModule(newProps.moduleId);
+        this.setState({selectedId: ''})
     }
     renderLessonTabs() {
         let lessons = this.state.lessons.map((lesson) => {
-            if (this.state.selectedId === lesson.id) {
-                return <LessonTabItem lesson={lesson} key={lesson.id}
-                                      click={this.selectLesson}
-                                        class="nav-link active"/>
-            } else {
-                return <LessonTabItem lesson={lesson} key={lesson.id}
-                                      click={this.selectLesson}
-                                      class="nav-link"/>
-            }
-
+            return <LessonTabItem lesson={lesson} key={lesson.id}
+                                  courseId={this.state.courseId}
+                                  moduleId={this.state.moduleId}
+                                  click={this.selectLesson}
+                                  class={this.state.selectedId===lesson.id?
+                                      "nav-link active":"nav-link"}/>
         });
-        return (
-            lessons
-        );
+        return lessons;
     }
     render() {
         return (
-            <div>
-                <h5>module: {this.state.moduleId}</h5>
-                <div className="row">
-                    <div className="col-8">
-                        <input className="form-control"
-                               placeholder="New Lesson"
-                               onChange={this.titleChange}/>
+            <Router>
+                <div>
+                    <h4 className="text-warning">Lessons</h4>
+                    <div className="row">
+                        <div className="col-8">
+                            <input className="form-control"
+                                   placeholder="New Lesson"
+                                   onChange={this.titleChange}/>
+                        </div>
+                        <div className="col-4">
+                            <button className="btn btn-block btn-info"
+                                    onClick={this.createLesson}>
+                            <i className="fa fa-plus"></i></button>
+                        </div>
                     </div>
-                    <div className="col-4">
-                        <span className={"btn btn-primary"} onClick={this.createLesson}>
-                        <i className="fa fa-plus"></i></span>
+                    <br/>
+                    <ul className="nav nav-tabs">
+                        {this.renderLessonTabs()}
+                        <li className="nav-item">
+                            <button className="btn btn-info"
+                                    onClick={() => {
+                                        if(window.confirm('Delete this lesson?'))
+                                        {this.deleteLesson()}}}>
+                            <i className="fa fa-times"></i></button>
+                        </li>
+                    </ul>
+                    <br/>
+                    <div>
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                                component={LessonEditor}>
+                        </Route>
                     </div>
                 </div>
-                <ul className="nav nav-tabs">
-                    {this.renderLessonTabs()}
-                    <li className="nav-item">
-                        <button className="btn btn-primary"
-                                onClick={this.deleteLesson}>
-                        <i className="fa fa-times"></i></button>
-                    </li>
-                </ul>
-            </div>
+            </Router>
         )
     }
 }

@@ -36,8 +36,6 @@ class LessonService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        }).then(function(response) {
-            return response.json();
         })
     }
 }
