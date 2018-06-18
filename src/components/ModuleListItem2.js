@@ -9,7 +9,7 @@ class ModuleListItem extends React.Component {
         return (
             <li className={this.props.class}
                 onClick={() => {this.props.click(this.props.module.id)}}>
-                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}/edit`}>
+                <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                     {this.props.module.title}
                 </Link>
                 <span className="float-right" onClick={() => {

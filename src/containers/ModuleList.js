@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 class ModuleList extends React.Component {
     constructor(props) {
         super(props);
+        console.log('constructor');
+        console.log(props);
         this.state =
             {courseId:'',
             module: {title: 'New Model'},
@@ -58,9 +60,15 @@ class ModuleList extends React.Component {
     }
     componentDidMount() {
         this.setCourseId(this.props.courseId);
+        console.log(this.props);
+        console.log(this.state.courseId);
+        // this.findAllModulesForCourse(this.props.courseId);
     }
     componentWillReceiveProps(newProps) {
+        console.log(this.state.courseId);
         this.setCourseId(newProps.courseId);
+        console.log(newProps);
+        console.log(this.state.courseId);
         this.findAllModulesForCourse(newProps.courseId);
     }
     renderModules() {
@@ -91,7 +99,7 @@ class ModuleList extends React.Component {
                             {this.renderModules()}</ul>
                     </div>
                     <div className="col-8">
-                        <Route path="/course/:courseId/module/:moduleId/edit"
+                        <Route path="/course/:courseId/module/:moduleId"
                                component={ModuleEditor}>
                         </Route>
                     </div>

@@ -3,6 +3,7 @@ import LessonService from '../services/LessonService';
 import LessonTabItem from '../components/LessonTabItem';
 import LessonEditor from './LessonEditor';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import WidgetListContainer from './widgetList';
 
 export default class LessonTabs
     extends React.Component {
@@ -114,7 +115,7 @@ export default class LessonTabs
                     <br/>
                     <div>
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                                component={LessonEditor}>
+                                component={WidgetListContainer}>
                         </Route>
                     </div>
                 </div>
