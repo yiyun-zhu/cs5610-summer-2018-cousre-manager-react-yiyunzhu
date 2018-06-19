@@ -11,7 +11,11 @@ import {
     MOVE_DOWN,
     PARAGRAPH_TEXT_CHANGED,
     WIDGET_NAME_CHANGED,
-    IMAGE_URL_CHANGED
+    IMAGE_URL_CHANGED,
+    LINK_URL_CHANGED,
+    LINK_TEXT_CHANGED,
+    LIST_TYPE_CHANGED,
+    LIST_ITEMS_CHANGED
 } from "../constants";
 
 export const moveUp = (dispatch, widget) => (
@@ -66,6 +70,13 @@ export const headingSizeChanged = (dispatch, widgetId, newSize) => (
         size: newSize
     })
 );
+export const listTypeChanged = (dispatch, widgetId, listType) => (
+    dispatch({
+        type: LIST_TYPE_CHANGED,
+        id: widgetId,
+        listType: listType
+    })
+);
 export const headingTextChanged = (dispatch, widgetId, newText) => (
     dispatch({
         type: HEADING_TEXT_CHANGED,
@@ -80,6 +91,20 @@ export const paragraphTextChanged = (dispatch, widgetId, newText) => (
         text: newText
     })
 );
+export const linkTextChanged = (dispatch, widgetId, newText) => (
+    dispatch({
+        type: LINK_TEXT_CHANGED,
+        id: widgetId,
+        text: newText
+    })
+);
+export const listItemsChanged = (dispatch, widgetId, newItems) => (
+    dispatch({
+        type: LIST_ITEMS_CHANGED,
+        id: widgetId,
+        listItems: newItems
+    })
+);
 export const widgetNameChanged = (dispatch, widgetId, newName) => (
     dispatch({
         type: WIDGET_NAME_CHANGED,
@@ -91,6 +116,13 @@ export const imageUrlChanged = (dispatch, widgetId, newUrl) => (
     dispatch({
         type: IMAGE_URL_CHANGED,
         id: widgetId,
-        url: newUrl
+        src: newUrl
+    })
+);
+export const linkUrlChanged = (dispatch, widgetId, newUrl) => (
+    dispatch({
+        type: LINK_URL_CHANGED,
+        id: widgetId,
+        href: newUrl
     })
 );

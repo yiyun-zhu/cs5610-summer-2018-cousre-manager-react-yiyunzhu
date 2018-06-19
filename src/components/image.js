@@ -10,13 +10,15 @@ const Image = ({widget, preview, imageUrlChanged, widgetNameChanged}) => {
             <div hidden={preview}>
                 <div className="form-group row">
                     <input className="form-control"
-                              value={widget.url}
-                              onChange={() =>
-                                  imageUrlChanged(widget.id, inputElem.value)}
-                              ref={node => inputElem = node}/>
+                           placeholder="Image URL"
+                          value={widget.src}
+                          onChange={() =>
+                              imageUrlChanged(widget.id, inputElem.value)}
+                          ref={node => inputElem = node}/>
                 </div>
                 <div className="form-group row">
                     <input className="form-control"
+                           placeholder="Widget name"
                            value={widget.name}
                            onChange={() =>
                                widgetNameChanged(widget.id, nameElem.value)}
@@ -24,7 +26,7 @@ const Image = ({widget, preview, imageUrlChanged, widgetNameChanged}) => {
                 </div>
             </div>
             <h3>Preview</h3>
-            {widget.url !== null && <img src={widget.url}/>}
+            {widget.src !== null && <img src={widget.src}/>}
         </div>
     )
 };

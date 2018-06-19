@@ -10,6 +10,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
             <div hidden={preview}>
                 <div className="form-group row">
                     <textarea className="form-control"
+                              placeholder="Paragraph text"
                               value={widget.text}
                               onChange={() =>
                                   paragraphTextChanged(widget.id, inputElem.value)}
@@ -17,6 +18,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
                 </div>
                 <div className="form-group row">
                     <input className="form-control"
+                           placeholder="Widget name"
                            value={widget.name}
                            onChange={() =>
                                widgetNameChanged(widget.id, nameElem.value)}
@@ -24,7 +26,7 @@ const Paragraph = ({widget, preview, paragraphTextChanged, widgetNameChanged}) =
                 </div>
             </div>
             <h3>Preview</h3>
-            <h4>{widget.text}</h4>
+            {widget.text}
         </div>
     )
 };

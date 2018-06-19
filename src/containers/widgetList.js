@@ -18,14 +18,15 @@ class WidgetList extends React.Component {
         return (
             <div>
                 <h3>Widget List ({this.props.widgets.length})</h3>
-                {/*<div className="row">*/}
                 <button hidden={this.props.previewMode}
                         onClick={() => this.props.save(this.props.match.params.lessonId)}>Save</button>
-                <button onClick={this.props.preview}>Preview</button>
-                {/*</div>*/}
+                <button
+                        onClick={this.props.preview}>Preview</button>
                 <ul className="list-group">
                     {this.props.widgets.map((widget) => (
-                        <WidgetContainer widget={widget}  key={widget.id}/>
+                        <WidgetContainer widget={widget} key={widget.id}
+                                         index={this.props.widgets.indexOf(widget)}
+                                         length={this.props.widgets.length}/>
                     ))}
                 </ul>
                 <button onClick={this.props.addWidget}>Add Widget</button>

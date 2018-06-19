@@ -2,30 +2,30 @@ import React from "react";
 import {connect} from "react-redux";
 import * as actions from "../actions";
 
-const Heading = ({widget, preview, headingSizeChanged, headingTextChanged, widgetNameChanged}) => {
+const List = ({widget, preview, listTypeChanged, listItemsChanged, widgetNameChanged}) => {
     let selectElem;
     let inputElem;
     let nameElem;
+    let id = 0;
     return (
         <div>
             <div hidden={preview}>
                 <div className="form-group row">
-                    <input className="form-control"
-                           placeholder="Heading text"
-                           value={widget.text}
+                    <textarea className="form-control"
+                              placeholder="Enter one item per line"
+                           value={widget.listItems}
                            onChange={() =>
-                               headingTextChanged(widget.id, inputElem.value)}
+                               listItemsChanged(widget.id, inputElem.value)}
                            ref={node => inputElem = node}/>
                 </div>
                 <div className="form-group row">
                     <select className="form-control"
-                            value={widget.size}
+                            value={widget.listType}
                             onChange={() =>
-                                headingSizeChanged(widget.id, selectElem.value)}
+                                listTypeChanged(widget.id, selectElem.value)}
                             ref={node => selectElem = node}>
-                        <option value='1'>Heading 1</option>
-                        <option value='2'>Heading 2</option>
-                        <option value='3'>Heading 3</option>
+                        <option>Unordered List</option>
+                        <option>Ordered List</option>
                     </select>
                 </div>
                 <div className="form-group row">
@@ -38,9 +38,12 @@ const Heading = ({widget, preview, headingSizeChanged, headingTextChanged, widge
                 </div>
             </div>
             <h3>Preview</h3>
-            {widget.size == 1 && <h1>{widget.text}</h1>}
-            {widget.size == 2 && <h2>{widget.text}</h2>}
-            {widget.size == 3 && <h3>{widget.text}</h3>}
+            {widget.listType === 'Ordered List' && widget.listItems != null &&
+                <ul>{widget.listItems.split('\n').map(listItem =>
+                    (<li key={++id}>{listItem}</li>))}</ul>}
+            {widget.listType === 'Unordered List' && widget.listItems != null &&
+                <ol>{widget.listItems.split('\n').map(listItem =>
+                    (<li key={++id}>{listItem}</li>))}</ol>}
         </div>
     )
 };
@@ -50,12 +53,12 @@ const stateToPropsMapper = (state) => ({
 const dispatchToPropsMapper = (dispatch) => ({
     widgetNameChanged: (widgetId, newName) =>
         actions.widgetNameChanged(dispatch, widgetId, newName),
-    headingSizeChanged: (widgetId, newSize) =>
-        actions.headingSizeChanged(dispatch, widgetId, newSize),
-    headingTextChanged: (widgetId, newText) =>
-        actions.headingTextChanged(dispatch, widgetId, newText)
+    listTypeChanged: (widgetId, listType) =>
+        actions.listTypeChanged(dispatch, widgetId, listType),
+    listItemsChanged: (widgetId, newItems) =>
+        actions.listItemsChanged(dispatch, widgetId, newItems)
 });
-const HeadingContainer = connect(stateToPropsMapper,
-    dispatchToPropsMapper)(Heading);
+const ListContainer = connect(stateToPropsMapper,
+    dispatchToPropsMapper)(List);
 
-export default HeadingContainer;
+export default ListContainer;
